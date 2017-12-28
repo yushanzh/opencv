@@ -22,7 +22,7 @@ int print_help(){
 
 //draw a line
 int draw_line(const	cv::Mat& image){
-	line(image, Point( 15, 20 ), Point( 70, 50), Scalar( 110, 220, 0 ),  2, 8 );
+	line(image, Point( 15, 20 ), Point( 370, 50), Scalar( 110, 220, 0 ),  2, 8 );
  	imshow("Image", image);
 	waitKey( 0 );
 	return 0;
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
 	std::ostream stream(nullptr);
 	stream.rdbuf(std::cout.rdbuf());
 	int oc;
-	if ((oc = getopt(argc, argv, "t")) != -1) {
+	if ((oc = getopt(argc, argv, "t:h")) != -1) {
 		switch(oc) {
 			case 't':
 				stream << "t="<< optarg << std::endl;
@@ -124,7 +124,6 @@ int main(int argc, char *argv[]) {
 	
 	Mat image = Mat::zeros( 400, 400, CV_8UC3 );
 	int type = atoi(optarg);
-	
 	switch(type) {
 		case 1: 
 			draw_line(image);
