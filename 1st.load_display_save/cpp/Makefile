@@ -9,7 +9,7 @@ CC=g++
   
 OBJS = load_display_save.o
   
-all : load_display_save
+all : clean load_display_save
 	echo all:make complete
   
 clean :
