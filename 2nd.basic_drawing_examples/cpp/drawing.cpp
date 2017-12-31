@@ -6,18 +6,7 @@
 #include <stdio.h>  
 
 using namespace cv;
-
-
-int print_help(){
-	printf("-t	Type of drawing.");
-	printf("\n\t 1:draw a line.");
-	printf("\n\t 2:draw a circle.");
-	printf("\n\t 3:draw a ellipse.");
-	printf("\n\t 4:draw a rectangle.");
-	printf("\n\t 5:draw a polygon.");
-	printf("\n\t 6:write text.");
-	return(0);
-}
+using namespace std;
 
 
 //draw a line
@@ -30,7 +19,7 @@ int draw_line(const	cv::Mat& image){
 
 //draw a cicle
 int draw_circle(Mat& image){
-  	circle( image, Point( 200, 200 ), 32.0, Scalar( 0, 0, 255 ), 1, 8 );
+  	circle( image, Point(200, 200), 32.0, Scalar( 0, 0, 255 ), 1, 8 );
   	imshow("Image",image);
 	waitKey(0);
 	return 0;
@@ -103,27 +92,25 @@ int put_text(Mat& image){
 }
 
 int main(int argc, char *argv[]) { 
+	cout << endl;
+    cout << "Cloning Module" << endl;
+    cout << "---------------" << endl;
+    cout << "Options: " << endl;
+    cout << endl;
+    cout << "1) Draw  Line " << endl;
+    cout << "2) Draw Circle" << endl;
+    cout << "3) Draw Ellipse " << endl;
+    cout << "4) Draw Rectangle" << endl;
+    cout << "5) Draw Polygon " << endl;
+    cout << "6) Put Text " << endl;
+	cout << "7) All Above" << endl;
+    cout << endl;
+    cout << "Press number 1-6 to choose from above techniques: ";
+    int type = 1;
+    cin >> type;
+    cout << endl;
 
-	std::ostream stream(nullptr);
-	stream.rdbuf(std::cout.rdbuf());
-	int oc;
-	if ((oc = getopt(argc, argv, "t:h")) != -1) {
-		switch(oc) {
-			case 't':
-				stream << "t="<< optarg << std::endl;
-				break;
-			default:
-				stream << "ERROR" << std::endl;
-				print_help();
-				return(0);
-		}
-	} else{
-		print_help();
-		return (0);
-	}
-	
 	Mat image = Mat::zeros( 400, 400, CV_8UC3 );
-	int type = atoi(optarg);
 	switch(type) {
 		case 1: 
 			draw_line(image);
@@ -143,9 +130,15 @@ int main(int argc, char *argv[]) {
 		case 6 :
 			put_text(image);
 			break;
+		case 7:
+			draw_line(image);
+			draw_circle(image);
+			draw_ellipse(image);
+			draw_rectangle(image);
+			draw_polygon(image);
+			put_text(image);
 		default :
-			print_help();
-			
+			break;
 	}
 
   return(0);

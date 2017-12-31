@@ -9,7 +9,7 @@ CC=g++
   
 OBJS = drawing.o
   
-all : drawing
+all : clean drawing
 	echo all:make complete
   
 clean :
